@@ -13,7 +13,7 @@ router.post('/register', (req, res) => {
     res.status(201).json(saved);
   })
   .catch(err => {
-    res.status(500).send('Failed to POST /auth/register: ' + err.message);
+    res.status(500).send('Failed to POST /api/auth/register: ' + err.message);
   });
 });
 
