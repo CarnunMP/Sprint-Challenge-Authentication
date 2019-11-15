@@ -15,11 +15,26 @@ describe('authRouter /api/auth', () => {
     });
 
     test('should return a JSON object with the given username', async () => {
-      const testUser = { username: "test1", password: "1234" };
-      const response = await request(server).post('/api/auth/register').send(testUser);
-      console.log(response.body);
+      const testUser1 = { username: "test1", password: "1234" };
+      const response = await request(server).post('/api/auth/register').send(testUser1);
       expect(typeof response.body).toBe('object');
-      expect(response.body.username).toEqual(testUser.username);
+      expect(response.body.username).toEqual(testUser1.username);
     });
   });
+
+  describe('[POST] /login', () => {
+    test('should return an OK (200) status code', async () => {
+      const testUser = { username: "test", password: "1234" };
+      const response = await request(server).post('/api/auth/login').send(testUser);
+      expect(response.status).toEqual(200);
+    });
+
+    test('should return a JSON object containing a message and a token', async () => {
+      const testUser1 = { username: "test1", password: "1234" };
+      const response = await request(server).post('/api/auth/login').send(testUser1);
+      expect(typeof response.body).toBe('object');
+      expect(response.body.message).not.toBe(undefined);
+      expect(response.body.token).not.toBe(undefined);
+    });
+  })
 });
