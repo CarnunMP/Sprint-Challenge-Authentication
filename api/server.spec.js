@@ -24,5 +24,5 @@ describe('server', () => {
       const response = await request(server).get('/')
       expect(response.body).toEqual({ api: 'up' });
     });
-  })
-})
+  });
+});
